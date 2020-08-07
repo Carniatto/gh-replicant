@@ -1,0 +1,22 @@
+header {
+  display: flex;
+  align-items: center;
+  height: 53px;
+  width: 100vw;
+  background-color: #242a2f;
+}
+
+.logo {
+  padding: 0 16px;
+  svg {
+    fill: #fff;
+    &:hover {
+      fill: #ffffffb3;
+    }
+  }
+}
+
+.title {
+  color: #fff;
+  font-size: 20px;
+}

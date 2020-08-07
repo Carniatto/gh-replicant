@@ -1,0 +1,13 @@
+footer {
+  height: 28px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  max-width: 80%;
+  color: #aaa;
+  border-top: 1px solid #ddd;
+
+  @media screen and (max-width: 768px) {
+    max-width: 100%;
+    margin: 0 16px;
+  }
+}
