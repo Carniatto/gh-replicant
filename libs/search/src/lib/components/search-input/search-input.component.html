@@ -1,0 +1,9 @@
+<form ngForm (submit)="search.emit(query)">
+  <input
+    type="text"
+    placeholder="Search GitHub..."
+    name="query"
+    [(ngModel)]="query"
+  />
+  <button type="submit">Search</button>
+</form>

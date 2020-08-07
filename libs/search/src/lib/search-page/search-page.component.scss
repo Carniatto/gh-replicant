@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  padding: 80px;
+
+  @media screen and (max-width: 768px) {
+    padding: 8px;
+  }
+}
+
+h2 {
+  font-weight: normal;
+}

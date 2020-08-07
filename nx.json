@@ -1,5 +1,5 @@
 {
-  "npmScope": "gh-replicant",
+  "npmScope": "ghr",
   "affected": {
     "defaultBase": "master"
   },
@@ -28,6 +28,9 @@
     "user-seeker-e2e": {
       "tags": [],
       "implicitDependencies": ["user-seeker"]
+    },
+    "search": {
+      "tags": ["ui"]
     }
   }
 }
