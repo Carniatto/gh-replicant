@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Store } from '@ngxs/store';
 
-import { GithubService } from '../github.service';
+import { SearchActions } from '../+state/search.actions';
 
 @Component({
   selector: 'ghr-search-page',
@@ -8,9 +9,9 @@ import { GithubService } from '../github.service';
   styleUrls: ['./search-page.component.scss'],
 })
 export class SearchPageComponent {
-  constructor(private github: GithubService) {}
+  constructor(private store: Store) {}
 
   onClick(query: string) {
-    this.github.searchUser(query).subscribe(console.log);
+    this.store.dispatch(new SearchActions.LoadResults(query, true));
   }
 }
