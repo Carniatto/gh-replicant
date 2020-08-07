@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "projects": {
+    "user-seeker": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/user-seeker",
+      "sourceRoot": "apps/user-seeker/src",
+      "prefix": "ghr",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/user-seeker",
+            "index": "apps/user-seeker/src/index.html",
+            "main": "apps/user-seeker/src/main.ts",
+            "polyfills": "apps/user-seeker/src/polyfills.ts",
+            "tsConfig": "apps/user-seeker/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/user-seeker/src/favicon.ico",
+              "apps/user-seeker/src/assets"
+            ],
+            "styles": ["apps/user-seeker/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/user-seeker/src/environments/environment.ts",
+                  "with": "apps/user-seeker/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "user-seeker:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "user-seeker:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "user-seeker:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/user-seeker/tsconfig.app.json",
+              "apps/user-seeker/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/user-seeker/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/user-seeker/jest.config.js",
+            "tsConfig": "apps/user-seeker/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/user-seeker/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "user-seeker-e2e": {
+      "root": "apps/user-seeker-e2e",
+      "sourceRoot": "apps/user-seeker-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/user-seeker-e2e/cypress.json",
+            "tsConfig": "apps/user-seeker-e2e/tsconfig.e2e.json",
+            "devServerTarget": "user-seeker:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "user-seeker:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/user-seeker-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/user-seeker-e2e/**/*"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": "8305f404-8ef5-4886-88dd-da82a0f94cba"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "user-seeker"
+}
