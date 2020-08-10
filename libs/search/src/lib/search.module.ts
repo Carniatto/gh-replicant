@@ -9,6 +9,7 @@ import { SearchState } from './+state/search.state';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { GithubService } from './github.service';
+import { QueryGuard } from './query.guard';
 import { ResultsPageComponent } from './results-page/results-page.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 
@@ -19,7 +20,12 @@ import { SearchPageComponent } from './search-page/search-page.component';
     FormsModule,
     RouterModule.forChild([
       { path: '', pathMatch: 'full', component: SearchPageComponent },
-      { path: 'results', pathMatch: 'full', component: ResultsPageComponent },
+      {
+        path: 'results',
+        pathMatch: 'full',
+        component: ResultsPageComponent,
+        canActivate: [QueryGuard],
+      },
     ]),
     NgxsModule.forFeature([SearchState]),
   ],
