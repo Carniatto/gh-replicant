@@ -7,6 +7,7 @@ export interface SearchStateModel {
 export interface Pagination {
   items: ItemDetail[];
   currentPage: number;
+  lastPage: number;
   totalCount: number;
 }
 

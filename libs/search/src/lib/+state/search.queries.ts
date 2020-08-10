@@ -43,9 +43,14 @@ export class SearchQueries {
       return null;
     }
 
+    const totalPages = Math.ceil(totalCount / 10);
+    // The open GH API limits to 1000 results (1000 / 10 per_page = 100 pages max)
+    const lastPage = totalPages > 100 ? 100 : totalPages;
+
     return {
       items,
       currentPage,
+      lastPage,
       totalCount,
     };
   }

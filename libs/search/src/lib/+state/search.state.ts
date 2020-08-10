@@ -1,5 +1,5 @@
-import { EMPTY, of, zip } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { patch } from '@ngxs/store/operators';
 
 import { GithubService } from '../github.service';
 import { SearchActions } from './search.actions';
-import { SearchStateModel, UserSearchResults, UserSearchResultsWithDetails } from './search.model';
+import { SearchStateModel, UserSearchResultsWithDetails } from './search.model';
 
 @State<SearchStateModel>({
   name: 'search',
@@ -37,6 +37,24 @@ export class SearchState {
         );
 
         return navigate ? this.router.navigate(['results']) : of(true);
+      })
+    );
+  }
+
+  @Action(SearchActions.SetPage)
+  setPage(
+    { setState, getState }: StateContext<any>,
+    { pageNumber }: SearchActions.SetPage
+  ) {
+    const { query } = getState();
+    return this.github.searchUser(query, pageNumber).pipe(
+      map((results: UserSearchResultsWithDetails) => {
+        setState(
+          patch({
+            results,
+            currentPage: pageNumber,
+          })
+        );
       })
     );
   }
