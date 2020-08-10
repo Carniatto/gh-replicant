@@ -25,7 +25,9 @@
               "apps/user-seeker/src/favicon.ico",
               "apps/user-seeker/src/assets"
             ],
-            "styles": ["apps/user-seeker/src/styles.scss"],
+            "styles": [
+              "apps/user-seeker/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -83,7 +85,10 @@
               "apps/user-seeker/tsconfig.app.json",
               "apps/user-seeker/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/user-seeker/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/user-seeker/**/*"
+            ]
           }
         },
         "test": {
@@ -94,6 +99,10 @@
             "passWithNoTests": true,
             "setupFile": "apps/user-seeker/src/test-setup.ts"
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     },
@@ -118,8 +127,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/user-seeker-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/user-seeker-e2e/**/*"]
+            "tsConfig": [
+              "apps/user-seeker-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/user-seeker-e2e/**/*"
+            ]
           }
         }
       }
@@ -137,7 +151,10 @@
               "libs/search/tsconfig.lib.json",
               "libs/search/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/search/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/search/**/*"
+            ]
           }
         },
         "test": {
