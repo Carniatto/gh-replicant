@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { NgxsModule } from '@ngxs/store';
 
 import { SearchState } from './+state/search.state';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { GithubService } from './github.service';
 import { ResultsPageComponent } from './results-page/results-page.component';
@@ -27,6 +28,7 @@ import { SearchPageComponent } from './search-page/search-page.component';
     SearchInputComponent,
     SearchPageComponent,
     ResultsPageComponent,
+    PaginatorComponent,
   ],
 })
 export class SearchModule {}

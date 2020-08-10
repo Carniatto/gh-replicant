@@ -1,1 +1,41 @@
-<p>results-page works!</p>
+<div class="search">
+  <ghr-search-input
+    [query]="query$ | async"
+    (search)="onSearch($event)"
+  ></ghr-search-input>
+</div>
+<ng-container>
+  <div
+    class="results"
+    *ngIf="pagination$ | async as pagination; else noResults"
+  >
+    <h3>{{ pagination.totalCount }} users</h3>
+    <div
+      class="card"
+      *ngFor="let item of pagination.items; trackBy: trackByFn('id')"
+    >
+      <div class="card-header">
+        <img class="avatar" [attr.src]="item.avatar_url" alt="profile-pic" />
+        <a [href]="item.html_url">{{ item.name }}</a>
+        <a class="login" [href]="item.html_url">{{ item.login }}</a>
+      </div>
+      <div class="card-body">
+        <p class="bio">{{ item.bio }}</p>
+      </div>
+      <div class="card-footer">
+        <div>{{ item.location }}</div>
+        <div>Followers: {{ item.followers }}</div>
+        <div>Following: {{ item.following }}</div>
+      </div>
+    </div>
+    <ghr-paginator
+      [currentPage]="pagination.currentPage"
+      [lastPage]="pagination.lastPage"
+      (setPage)="onSetPage($event)"
+    ></ghr-paginator>
+  </div>
+</ng-container>
+
+<ng-template #noResults>
+  <center>No results found for this criteria. Try again!</center>
+</ng-template>

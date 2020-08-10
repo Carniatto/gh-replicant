@@ -1,0 +1,33 @@
+<ng-container *ngIf="lastPage > 1">
+  <button
+    class="primary"
+    (click)="setPage.emit(currentPage - 1)"
+    [disabled]="currentPage === 1"
+  >
+    < Previous
+  </button>
+  <button class="page" *ngIf="currentPage !== 1" (click)="setPage.emit(1)">
+    1
+  </button>
+  <button class="selected" *ngIf="currentPage < lastPage / 2">
+    {{ currentPage }}
+  </button>
+  <span class="gap">...</span>
+  <button class="selected" *ngIf="currentPage > lastPage / 2">
+    {{ currentPage }}
+  </button>
+  <button
+    class="page"
+    *ngIf="currentPage !== lastPage"
+    (click)="setPage.emit(lastPage)"
+  >
+    {{ lastPage }}
+  </button>
+  <button
+    class="primary"
+    (click)="setPage.emit(currentPage + 1)"
+    [disabled]="currentPage === lastPage"
+  >
+    Next >
+  </button>
+</ng-container>
