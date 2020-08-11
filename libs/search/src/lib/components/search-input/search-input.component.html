@@ -1,9 +1,9 @@
-<form ngForm (submit)="search.emit(query)">
+<form ngForm (submit)="search.emit(query)" data-cy="ghr-search-bar">
   <input
     type="text"
     placeholder="Search GitHub..."
     name="query"
     [(ngModel)]="query"
   />
-  <button type="submit">Search</button>
+  <button type="submit" data-cy="ghr-search-button">Search</button>
 </form>

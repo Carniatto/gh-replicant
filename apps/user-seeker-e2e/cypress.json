@@ -1,5 +1,5 @@
 {
-  "fileServerFolder": ".",
+  "baseUrl": "http://localhost:4200",
   "fixturesFolder": "./src/fixtures",
   "integrationFolder": "./src/integration",
   "modifyObstructiveCode": false,

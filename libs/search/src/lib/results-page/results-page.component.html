@@ -12,11 +12,12 @@
     <h3>{{ pagination.totalCount }} users</h3>
     <div
       class="card"
+      data-cy="ghr-result-card"
       *ngFor="let item of pagination.items; trackBy: trackByFn('id')"
     >
       <div class="card-header">
         <img class="avatar" [attr.src]="item.avatar_url" alt="profile-pic" />
-        <a [href]="item.html_url">{{ item.name }}</a>
+        <a class="name" [href]="item.html_url">{{ item.name }}</a>
         <a class="login" [href]="item.html_url">{{ item.login }}</a>
       </div>
       <div class="card-body">
@@ -29,6 +30,7 @@
       </div>
     </div>
     <ghr-paginator
+      data-cy="ghr-paginator"
       [currentPage]="pagination.currentPage"
       [lastPage]="pagination.lastPage"
       (setPage)="onSetPage($event)"
