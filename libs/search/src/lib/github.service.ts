@@ -1,4 +1,4 @@
-import { forkJoin, Observable, zip } from 'rxjs';
+import { EMPTY, forkJoin, Observable, of, zip } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -30,7 +30,10 @@ export class GithubService {
         params,
       })
       .pipe(
-        switchMap((results) => {
+        switchMap((results: UserSearchResults) => {
+          if (results.items.length === 0) {
+            return of(null);
+          }
           const userUrls = results.items.map((item) => item.url);
           const userDetails$ = userUrls.map((url) =>
             this.http.get<ItemDetail>(url)
